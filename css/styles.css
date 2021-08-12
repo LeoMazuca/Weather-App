@@ -9,12 +9,31 @@
 ::-webkit-scrollbar {
     display: none;
 }
+.backgroundDay{
+    background-image: url("https://images.pexels.com/photos/2379653/pexels-photo-2379653.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+}
+.backgroundNight{
+    background-image: url("https://cdn.pixabay.com/photo/2017/09/22/20/23/moon-2776955_960_720.jpg");
+}
+.whiteLetters{
+    color: white;
+}
+img{
+    opacity: 0;
+    animation: 2s image forwards;
+}
+h1, h2, h3, h4, span{
+    transition: color ease-in-out 1.5s;
+}
 .container{
     display: grid;
     grid-gap: 10px;
-    background: #000;
-    padding: 10px;/* 
-    max-height: 100vh;
+    padding: 10px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: all ease-in-out .5s;
+    /*max-height: 100vh;
     overflow: scroll; */
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     grid-template-areas: "main-weather      search          search"
@@ -23,17 +42,18 @@
     grid-auto-flow: dense;
 }
 .main-weather{
-    background: blue;
     grid-area: main-weather;
     min-height: calc(100vh - 20px);
     text-align: center;
     padding: .5em;
     display: flex;
     flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 10px;
 }
 #city{
-    /* font-size: 3em; */
-    /* font-size: 6vh; */
     font-size: 200%;
 }
 .grades{
@@ -58,6 +78,12 @@ h4 span{
     justify-content: space-around;
     margin-bottom: 3%;
 }
+.min{
+    color: red;    
+}
+.max{
+    color:blue;
+}
 .data{
     display: grid;
     width: 80%;
@@ -75,7 +101,7 @@ h4 span{
 }
 /* *************************************search */
 .search{
-    background: red;
+    
     grid-area: search;
     padding: 10px;
     height: fit-content;
@@ -88,42 +114,57 @@ h4 span{
     padding-left: 1.5em;
     outline: none;
     border: none;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(4px);
 }
 .search:focus{
     color: transparent;
+}
+.search input::placeholder{
+    color: white;
 }
 .btn{
     position: relative;
     left: -4px;
     border-radius:0 20px 20px 0;
+    border-left: none;
     padding: .5em;
     padding-right: 1em;
     outline: none;
     border: none;
-    background: white;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(4px);
 }
 /* ********************************************WEEK WEATHER */
 .week-weather{
-    background: yellow;
+    
     grid-area: week-weather;
     /* height: calc(90vh - 20px); */
     display: grid;
-    /* grid-gap: 10px; */
+    grid-gap: 10px;
     grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     justify-content: center;
     align-items: center;
     text-align: center;
 }
+.day{
+    /* background-color: rgba(0, 0, 0, 0.1); */
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    padding: 10px 0;
+}
 .week-weather div{
-    background: tomato;
-    height: fit-content;
+    height: fit-content;    
 }
 #icon2{
     width: 25%;
 }
 .data2{
     display: grid;
-    width: 90%;
+    width: 80%;
     grid-template-columns: 1fr auto;
     align-items: center;
     align-self: center;
@@ -141,6 +182,14 @@ h4 span{
 }
 .day h4{
     font-size: 100%;
+}
+@keyframes image {
+    from{
+        opacity: 0;
+    }
+    to{
+        opacity: 1;
+    }
 }
 /* ******************************************MEDIAS QUERIES */
 @media (min-width: 1199px){
@@ -229,6 +278,12 @@ h4 span{
 }
 
 @media (min-width: 361px) and (max-width: 480px){
+    .backgroundDay{
+        background-image: url("https://images.pexels.com/photos/586687/pexels-photo-586687.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    }
+    .backgroundNight{
+        background-image: url("https://images.pexels.com/photos/2603464/pexels-photo-2603464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    }
     .container{
         max-height: auto;
         grid-template-areas: "search            search          search"
@@ -261,6 +316,12 @@ h4 span{
     }
 }
 @media (max-width: 360px){
+    .backgroundDay{
+        background-image: url("https://images.pexels.com/photos/586687/pexels-photo-586687.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    }
+    .backgroundNight{
+        background-image: url("https://images.pexels.com/photos/2603464/pexels-photo-2603464.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940");
+    }
     .container{
         max-height: auto;
         grid-template-areas: "search            search          search"
@@ -286,91 +347,10 @@ h4 span{
     .day {
         min-width: 95vw;
     }
+    .day h4{
+        font-size: 1rem;
+    }
     .data2{
         width: 80%;
     }
 }
-
-
-/* @media (max-width: 1060px){
-    .week-weather{
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    }
-    .day h4{
-        font-size: 85%;
-    }
-    .data img{
-        width: 60%;
-    }
-}
-@media (max-width: 925px){
-    .week-weather{
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    }
-    .day h4{
-        font-size: 70%;
-    }
-    .data img{
-        width: 100%;
-    }
-}
-@media (max-width: 870px){
-    .data img{
-        width: 80%;
-    }
-    .data h4{
-        font-size: 100%;
-    }
-    .day img{
-        width: 40%;
-    }
-}
-@media (max-width: 700px){
-    .week-weather{
-        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    }
-    .data h4{
-        font-size: 85%;
-    }
-    .day img{
-        width: 40%;
-    }
-}
-@media (max-width: 655px){
-    .week-weather{
-        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-    }
-    .data h4{
-        font-size: 80%;
-    }
-    .day img{
-        width: 40%;
-    }
-    .day h4{
-        font-size: 50%;
-    }
-}
-@media (max-width: 640px){
-    .container{
-        max-height: auto;
-        grid-template-areas: "search            search          search"
-                             "main-weather      main-weather    main-weather"
-                             "week-weather      week-weather    week-weather";
-    }
-    .search input{
-        width: 80%;
-    }
-    .data img{
-        width: 30%;
-    }
-    .data h4{
-        font-size: 150%;
-    }
-    .week-weather{
-        display: flex;
-        overflow-y: scroll;
-    }
-}
-@media (max-width: 640px){
-
-} */
