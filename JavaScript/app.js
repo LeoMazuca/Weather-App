@@ -49,8 +49,6 @@ getWeatherData = async(city) => {
 
         //Mostrar los Datos en pantalla
         displayData(data);
-
-        console.log(data)
     }
 }
 getWeatherDataWeek = async(city) => {
@@ -117,9 +115,6 @@ displayDataWeek = (data) =>{
     });
 }
 displayBackgroundImage = (data) => {
-    const dayhour =  data.list[0].dt;
-    console.log(window.moment(dayhour * 1000).format('HH:mm a'));
-
        let isDay = data.list[0].weather[0].icon.charAt(2);
         if (isDay === 'd') {
             container.className = "container backgroundDay";
